@@ -1,6 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+// take in a null terminated string and freakyprint it
+void freakyprint(char* word){
+	char epicchar[] = {0xf0, 0x9d, 0x01, 0x01, 0x00};   
+	int c = 0;
+	while (word[c] != '\0'){
+		if ('A' <= word[c] && word[c] < 'A'+26){
+			//printf("%c", this_char + (FREAKY_A - A));
+			epicchar[2] = 0x93;
+			epicchar[3] = 0x90 + (word[c] - 'A');
+			printf("%s", epicchar);
+		}
+		else if ('a' <= word[c] && word[c] <= 'a'+26){
+			//printf("%c", this_char + (FREAKY_a - a));
+			if (word[c] < 'w'){
+				epicchar[2] = 0x93;
+				epicchar[3] = 0xaa + (word[c] - 'a');
+			} else {
+				// idk why i have to do this. i made this in 30 minutes leave me alone
+				epicchar[2] = 0x94;
+				epicchar[3] = 0x80 + (word[c] - 'w');
+			}
+			printf("%s", epicchar);
+		}
+		else
+			printf("%c", word[c]);
+		c++; //WHAT?!
+	}
+}
+
+
 int main(int argc, char** argv){
 	// 𝓐 = U+1D4D0
 	// 𝓪 = U+1D4EA
@@ -9,32 +40,16 @@ int main(int argc, char** argv){
 	// const unsigned int FREAKY_a = 0x1d4ea;
 	// const char FREAKY_a[] = {0xf0, 0x9d, 0x94, 0xaa, 0x00};
 	char epicchar[] = {0xf0, 0x9d, 0x01, 0x01, 0x00};	
-	for (int w = 1; w < argc; w++){
-		int c = 0;
-		while (argv[w][c] != '\0'){
-			char this_char = argv[w][c];
-			if ('A' <= this_char && this_char < 'A'+26){
-				//printf("%c", this_char + (FREAKY_A - A));
-				epicchar[2] = 0x93;
-				epicchar[3] = 0x90 + (this_char - 'A');
-				printf("%s", epicchar);
-			}
-			else if ('a' <= this_char && this_char <= 'a'+26){
-				//printf("%c", this_char + (FREAKY_a - a));
-				if (this_char < 'w'){
-					epicchar[2] = 0x93;
-					epicchar[3] = 0xaa + (this_char - 'a');
-				} else {
-					// idk why i have to do this. i made this in 30 minutes leave me alone
-					epicchar[2] = 0x94;
-					epicchar[3] = 0x80 + (this_char - 'w');
-				}
-				printf("%s", epicchar);
-			}
-			else
-				printf("%c", this_char);
-			c++; //WHAT?!
+	/* if (argc <= 1){
+		char innie[256];
+		while (1) {
+			scanf("%s\n", innie);
+			freakyprint(innie);
 		}
+	}
+	else */ 
+	for (int w = 1; w < argc; w++){
+		freakyprint(argv[w]);
 		printf(" ");
 	}
 	printf("\n");
