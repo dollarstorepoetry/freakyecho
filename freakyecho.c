@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 // take in a null terminated string and freakyprint it
 void freakyprint(char* word){
+	// const char FREAKY_A[] = {0xf0, 0x9d, 0x93, 0x90, 0x00};
+	// const char FREAKY_a[] = {0xf0, 0x9d, 0x94, 0xaa, 0x00};
 	char epicchar[] = {0xf0, 0x9d, 0x01, 0x01, 0x00};   
 	int c = 0;
 	while (word[c] != '\0'){
@@ -35,19 +36,7 @@ void freakyprint(char* word){
 int main(int argc, char** argv){
 	// 𝓐 = U+1D4D0
 	// 𝓪 = U+1D4EA
-	// const unsigned int FREAKY_A = 0x1d4d0;
-	// const char FREAKY_A[] = {0xf0, 0x9d, 0x93, 0x90, 0x00};
-	// const unsigned int FREAKY_a = 0x1d4ea;
-	// const char FREAKY_a[] = {0xf0, 0x9d, 0x94, 0xaa, 0x00};
-	char epicchar[] = {0xf0, 0x9d, 0x01, 0x01, 0x00};	
-	/* if (argc <= 1){
-		char innie[256];
-		while (1) {
-			scanf("%s\n", innie);
-			freakyprint(innie);
-		}
-	}
-	else */ 
+	char epicchar[] = {0xf0, 0x9d, 0x01, 0x01, 0x00};
 	for (int w = 1; w < argc; w++){
 		freakyprint(argv[w]);
 		printf(" ");
